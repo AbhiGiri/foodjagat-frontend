@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-//// #0. GetMyUser
+//// #0. GetMyUser 
 export const useGetMyUser = () => {
   const { getAccessTokenSilently} = useAuth0();
 
