@@ -6,7 +6,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 const UsernameMenu = () => {
-  const { user, logout} = useAuth0();
+  const { user, logout } = useAuth0();
 
   return (
     <DropdownMenu>
@@ -15,6 +15,11 @@ const UsernameMenu = () => {
         {user?.email}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem>
+          <Link to="/manage-restaurant" className="font-bold hover:text-orange-500" >
+            Manage Restaurant
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <Link to="/user-profile" className="font-bold hover:text-orange-500" >
             User Profile

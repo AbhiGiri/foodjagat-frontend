@@ -7,11 +7,10 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 //// #0. GetMyUser 
 export const useGetMyUser = () => {
-  const { getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const getMyUserRequest = async (): Promise<User> => {
     const accessToken = await getAccessTokenSilently();
-
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: 'GET',
       headers: {
@@ -20,18 +19,18 @@ export const useGetMyUser = () => {
       }
     });
 
-    if(!response.ok) throw new Error('Failed to fetch the user.');
+    if (!response.ok) throw new Error('Failed to fetch the user.');
 
     return response.json();
   };
 
-  const {data: currentUser, isLoading, error} = useQuery("fetchCurrentUser", getMyUserRequest)
+  const { data: currentUser, isLoading, error } = useQuery("fetchCurrentUser", getMyUserRequest)
 
-  if(error) {
+  if (error) {
     toast.error(error.toString())
   };
 
-  return {currentUser, isLoading}
+  return { currentUser, isLoading }
 };
 
 //// #1. CreateMyUserRequest
@@ -41,9 +40,9 @@ type CreateUserRequest = {
 };
 
 export const useCreateMyUser = () => {
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
-  const createMyUserRequest = async( user: CreateUserRequest) => {
+  const createMyUserRequest = async (user: CreateUserRequest) => {
     const accessToken = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "POST",
@@ -53,15 +52,17 @@ export const useCreateMyUser = () => {
       },
       body: JSON.stringify(user)
     });
-    if(!response.ok) {
+
+    if (!response.ok) {
       throw new Error("Failed to create a user");
     };
+    
   };
 
   const {
-    mutateAsync: createUser, 
-    isLoading, 
-    isError, 
+    mutateAsync: createUser,
+    isLoading,
+    isError,
     isSuccess
   } = useMutation(createMyUserRequest);
 
@@ -73,13 +74,13 @@ type UpdateMyUserRequest = {
   name: string;
   addressLine1: string;
   city: string;
-  country: string; 
+  country: string;
 };
 
 export const useUpdateMyUser = () => {
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
-  const updateMyUserRequest = async(formData: UpdateMyUserRequest) => {
+  const updateMyUserRequest = async (formData: UpdateMyUserRequest) => {
     const accessToken = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "PUT",
@@ -90,7 +91,7 @@ export const useUpdateMyUser = () => {
       body: JSON.stringify(formData)
     });
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error("Failed to update user.");
     };
 
@@ -105,15 +106,15 @@ export const useUpdateMyUser = () => {
     reset
   } = useMutation(updateMyUserRequest);
 
-  if(isSuccess) {
+  if (isSuccess) {
     toast.success("User profile updated successfully!")
     reset();
   };
 
-  if(error) {
+  if (error) {
     toast.error(error.toString());
     reset();
   };
 
-  return { updateUser, isLoading};
+  return { updateUser, isLoading };
 };
