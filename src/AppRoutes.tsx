@@ -19,7 +19,7 @@ function AppRoutes() {
         <Route path="/user-profile" element={<Layout showHero={false}><UserProfilePage /></Layout>}/>
         <Route path="/manage-restaurant" element={<Layout showHero={false}><ManageRestaurantPage /></Layout>}/>
       </Route>
-      <Route path="*"               element={<Navigate to="/" />}/>
+      <Route path="*" element={<Navigate to="/" />}/>
       {/* protected Routes End */}
 
     </Routes>

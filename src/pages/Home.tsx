@@ -5,7 +5,7 @@ const Home = () => {
  return (
   <div className="flex flex-col gap-12">
     <div className="flex flex-col gap-5 text-center bg-white rounded-lg shadow-md py-8 -mt-16">
-      <h1 className="text-5xl font-bold tracking-tighter text-orange-600">Tuck into a takeway today</h1>
+      <h1 className="text-5xl font-bold tracking-tighter text-orange-600">Tucking into a takeway today</h1>
       <span className="text-xl">Your Food is just a click away</span>
     </div>
     
