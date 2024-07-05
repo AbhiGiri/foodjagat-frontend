@@ -8,9 +8,7 @@ import { Button } from './ui/button';
 import { useEffect } from 'react';
 
 const formSchema = z.object({
-  searchQuery: z.string({
-    required_error: "Restaurant name is required."
-  }),
+  searchQuery: z.string({ required_error: "Restaurant name is required." }),
 });
 
 export type SearchForm = z.infer<typeof formSchema>
@@ -22,7 +20,7 @@ type Props = {
  searchQuery?: string;
 }
 
-const SearchBar = ({onSubmit, onReset, placeHolder, searchQuery}: Props) => {
+const SearchBar = ({ onSubmit, onReset, placeHolder, searchQuery}: Props) => {
   const form = useForm<SearchForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,10 +45,9 @@ const SearchBar = ({onSubmit, onReset, placeHolder, searchQuery}: Props) => {
 
   return (
     <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className={`mx-5 flex items-center gap-3 justify-between flex-row border-2 rounded-full p-3 ${
-          form.formState.errors.searchQuery && "border-red-500"
-        }`}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={`mx-5 flex items-center gap-3 justify-between flex-row border-2 rounded-full p-3 ${ form.formState.errors.searchQuery && "border-red-500"}`}>
         <Search strokeWidth={2.5} size={30} className='ml-1 text-orange-500 hidden md:block' />
+        
         <FormField control={form.control} name='searchQuery' render={({field}) => (
           <FormItem className='flex-1'>
             <FormControl>
@@ -58,9 +55,8 @@ const SearchBar = ({onSubmit, onReset, placeHolder, searchQuery}: Props) => {
             </FormControl>
             </FormItem>
         )}/>
-        {form.formState.isDirty && (
-          <Button type='button' variant='outline' className='rounded-full' onClick={handleReset}>Clear</Button>  
-        )}
+
+        {form.formState.isDirty && (<Button type='button' variant='outline' className='rounded-full' onClick={handleReset}>Clear</Button>  )}
         <Button type='submit' className='rounded-full bg-orange-500'>Submit</Button>
       </form>
     </Form>

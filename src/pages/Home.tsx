@@ -7,9 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleSearchSubmit = (searchFormValues: SearchForm) => {
-    navigate({
-      pathname: `/search/${searchFormValues.searchQuery}`
-    })
+    navigate({ pathname: `/search/${searchFormValues.searchQuery}`})
   };
 
   return (
@@ -17,7 +15,12 @@ const Home = () => {
       <div className="md:px-32 flex flex-col gap-5 text-center bg-white rounded-lg shadow-md py-8 -mt-16">
         <h1 className="text-5xl font-bold tracking-tighter text-orange-600">Tucking into a takeway today</h1>
         <span className="text-xl">Your Food is just a click away</span>
-        <SearchBar onSubmit={handleSearchSubmit} onReset={()=> {}} placeHolder='Search by City or Town' searchQuery='' />
+        <SearchBar 
+          onSubmit={handleSearchSubmit} 
+          onReset={()=> {}} 
+          placeHolder='Search by City or Town' 
+          searchQuery='' 
+        />
       </div>
 
       {/* App Download */}
